@@ -13,7 +13,7 @@
     "db:setup": "prisma db push && prisma db seed"
   },
   "prisma": {
-    "seed": "npx tsx prisma/seed.ts"
+    "seed": "pnpm exec tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",
@@ -23,6 +23,7 @@
     "prisma": "^6.9.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "tsx": "^4.0.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
@@ -35,7 +36,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
-    "tsx": "^4.0.0",
     "typescript": "^5"
   },
   "description": "NordFlow Tasks - Task tracker",
