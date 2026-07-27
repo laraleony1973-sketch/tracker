@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- Icon -->
+  <g transform="translate(0, 0)">
+    <rect width="48" height="48" rx="12" fill="#0B2E4F"/>
+    <g transform="translate(8, 8)">
+      <rect x="4" y="6" width="5" height="28" rx="2.5" fill="#00A9A5"/>
+      <rect x="25" y="6" width="5" height="28" rx="2.5" fill="#00A9A5"/>
+      <path d="M6.5 7.5 C14 7.5 18 18 22 23 C24.5 26 26.5 28 27.5 28" stroke="#00A9A5" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    </g>
+  </g>
+  <!-- Text -->
+  <text x="58" y="33" font-family="Montserrat, sans-serif" font-size="24" font-weight="700" fill="#0B2E4F">Nord</text>
+  <text x="112" y="33" font-family="Montserrat, sans-serif" font-size="24" font-weight="700" fill="#00A9A5">Flow</text>
+</svg>

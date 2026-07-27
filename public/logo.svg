@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" rx="40" fill="#0B2E4F"/>
+  <g transform="translate(30, 30)">
+    <!-- Stylized N with flowing wave -->
+    <path d="M20 120V40c0-11 9-20 20-20h5c11 0 20 9 20 20v80c0 11-9 20-20 20h-5c-11 0-20-9-20-20z" fill="none" stroke="#00A9A5" stroke-width="0"/>
+    <!-- Left pillar -->
+    <rect x="15" y="25" width="14" height="110" rx="7" fill="#00A9A5"/>
+    <!-- Right pillar -->
+    <rect x="105" y="25" width="14" height="110" rx="7" fill="#00A9A5"/>
+    <!-- Diagonal wave connecting top-left to bottom-right -->
+    <path d="M22 30 C50 30 60 70 80 90 C95 105 105 120 112 120" stroke="#00A9A5" stroke-width="14" stroke-linecap="round" fill="none"/>
+    <!-- Subtle wave accent -->
+    <path d="M30 100 C50 88 70 95 90 108 C100 115 110 112 115 108" stroke="#4CC9F0" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.5"/>
+  </g>
+</svg>

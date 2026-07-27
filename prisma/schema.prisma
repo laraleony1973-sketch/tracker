@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  firstName     String
+  lastName      String
+  role          String    @default("EMPLOYEE")
+  position      String?
+  avatar        String?
+  theme         String    @default("light")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  createdTasks      Task[]      @relation("TaskCreator")
+  assignedTasks     Task[]      @relation("TaskAssignee")
+  comments          Comment[]
+  notifications     Notification[]
+  projectMembers    ProjectMember[]
+  ledProjects       Project[]   @relation("ProjectLead")
+}
+
+model Project {
+  id            String    @id @default(uuid())
+  name          String
+  description   String?
+  status        String    @default("PLANNING")
+  startDate     DateTime?
+  endDate       DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  leadId        String
+  lead          User      @relation("ProjectLead", fields: [leadId], references: [id])
+
+  tasks         Task[]
+  members       ProjectMember[]
+}
+
+model ProjectMember {
+  id        String  @id @default(uuid())
+  role      String  @default("MEMBER")
+
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id])
+
+  @@unique([userId, projectId])
+}
+
+model Task {
+  id            String    @id @default(uuid())
+  identifier    String?
+  title         String
+  description   String?
+  status        String    @default("BACKLOG")
+  priority      String    @default("MEDIUM")
+  deadline      DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  projectId     String
+  project       Project   @relation(fields: [projectId], references: [id])
+
+  creatorId     String
+  creator       User      @relation("TaskCreator", fields: [creatorId], references: [id])
+
+  assigneeId    String?
+  assignee      User?     @relation("TaskAssignee", fields: [assigneeId], references: [id])
+
+  tags          String?
+  attachments   String?
+
+  comments      Comment[]
+}
+
+model Comment {
+  id        String  @id @default(uuid())
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  taskId    String
+  task      Task    @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  authorId  String
+  author    User    @relation(fields: [authorId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  type      String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  taskId    String?
+  projectId String?
+}
