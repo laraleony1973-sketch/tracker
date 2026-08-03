@@ -2,10 +2,10 @@
 set -e
 
 echo "Running database push..."
-pnpm exec prisma db push --skip-generate
+npx prisma db push --skip-generate
 
 echo "Seeding database..."
-pnpm exec prisma db seed
+npx prisma db seed
 
 echo "Starting application..."
-pnpm start
+npm start

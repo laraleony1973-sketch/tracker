@@ -2,7 +2,6 @@
   "name": "nordflow-tasks",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.17.0",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -14,7 +13,7 @@
     "db:setup": "prisma db push && prisma db seed"
   },
   "prisma": {
-    "seed": "pnpm exec tsx prisma/seed.ts"
+    "seed": "npx tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",

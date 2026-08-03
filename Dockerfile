@@ -2,18 +2,18 @@ FROM node:22-slim
 
 RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
-RUN corepack enable && corepack prepare pnpm@11.17.0 --activate
-
 WORKDIR /app
+
+COPY package.json ./
+
+RUN npm install
 
 COPY . .
 
-RUN pnpm install --frozen-lockfile
+RUN npx prisma generate
 
-RUN pnpm exec prisma generate
-
-RUN pnpm build
+RUN npm run build
 
 EXPOSE 3000
 
-CMD ["./entrypoint.sh"]
+CMD ["sh", "-c", "npx prisma db push --skip-generate && npx prisma db seed && npm start"]
