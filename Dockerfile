@@ -1,16 +1,14 @@
 FROM node:22-slim
 
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 RUN corepack enable && corepack prepare pnpm@11.17.0 --activate
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
-
-RUN pnpm install --frozen-lockfile
-
 COPY . .
 
-RUN chmod +x entrypoint.sh
+RUN pnpm install --frozen-lockfile
 
 RUN pnpm exec prisma generate
 
